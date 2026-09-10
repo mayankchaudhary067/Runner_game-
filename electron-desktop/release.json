@@ -1,0 +1,14 @@
+{
+  "url": "https://your-update-server.example.com/releases",
+  "version": "1.0.0",
+  "files": [
+    {
+      "path": "latest.yml",
+      "url": "https://your-update-server.example.com/releases/latest.yml"
+    },
+    {
+      "path": "SimpleRunner-1.0.0-win.exe",
+      "url": "https://your-update-server.example.com/releases/SimpleRunner-1.0.0-win.exe"
+    }
+  ]
+}

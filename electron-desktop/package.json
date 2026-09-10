@@ -1,0 +1,72 @@
+{
+  "name": "simple-runner-desktop",
+  "version": "1.0.0",
+  "description": "Windows desktop version of the Simple Runner browser app",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --inspect=5858",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "build": "electron-builder --win portable",
+    "lint": "node --check src/main.js && node --check src/preload.js && node --check src/update.js && node --check src/settings.js && node --check src/logger.js && node --check src/windows/MainWindow.js && node --check src/windows/SplashWindow.js",
+    "release": "electron-builder --win --publish always"
+  },
+  "author": "Luckyproject",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^31.7.0",
+    "electron-updater": "^6.3.8"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.13.0"
+  },
+  "build": {
+    "appId": "com.luckyproject.simplerunner",
+    "productName": "Simple Runner",
+    "artifactName": "SimpleRunner-${version}-${os}.${ext}",
+    "directories": {
+      "app": ".",
+      "output": "dist"
+    },
+    "files": [
+      "src/**",
+      "assets/**",
+      "index.html",
+      "styles.css",
+      "game.js",
+      "package.json",
+      "node_modules/**"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "publisherName": "Luckyproject",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Simple Runner",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "deleteAppDataOnUninstall": true,
+      "include": "build/installer.nsh"
+    },
+    "portable": {
+      "artifactName": "SimpleRunner-Portable-${version}.exe"
+    }
+  }
+}
